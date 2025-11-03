@@ -22,6 +22,7 @@
   },
   "description": "",
   "dependencies": {
+    "@elastic/elasticsearch": "^9.2.0",
     "@types/eslint__js": "^8.42.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
