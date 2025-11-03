@@ -7,7 +7,7 @@ import { LeagalDocService } from './legalDoc.service';
 
 const getAllDocs = catchAsync(async (req, res) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const filters = pick(req as any, LEGAL_DOC_FILTER_FIELDS);
+  const filters = pick(req.query as any, LEGAL_DOC_FILTER_FIELDS);
 
   const result = await LeagalDocService.getAllDocs(filters);
 
@@ -15,7 +15,8 @@ const getAllDocs = catchAsync(async (req, res) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Doc retrieved successfully!',
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 

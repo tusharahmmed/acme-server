@@ -5,22 +5,21 @@ import { Client } from '@elastic/elasticsearch';
 import httpStatus from 'http-status';
 import config from '../../config';
 import { mockLegalDocs } from '../../constant/db';
+import { ELASTIC_INDEX } from '../../enums/elasticIndex';
 import ApiError from '../../errors/ApiError';
 
-const elasticClient = new Client({
+export const elasticClient = new Client({
   node: config.elastic_node,
   auth: {
     apiKey: config.elastic_api_key as string,
   },
 });
 
-const PROPERTY_INDEX = 'legal_documents';
-
 export const initialize_elastic_search = async () => {
   try {
     // chekc exist index
     const isIndexExist = await elasticClient.indices.exists({
-      index: PROPERTY_INDEX,
+      index: ELASTIC_INDEX.LEGAL_DOCS,
     });
 
     if (isIndexExist) {
@@ -29,7 +28,7 @@ export const initialize_elastic_search = async () => {
 
     // create index
     await elasticClient.indices.create({
-      index: PROPERTY_INDEX,
+      index: ELASTIC_INDEX.LEGAL_DOCS,
       body: {
         mappings: {
           properties: {
@@ -55,7 +54,7 @@ export const initialize_elastic_search = async () => {
     const operations = [];
     for (const item of mockLegalDocs) {
       operations.push({
-        index: { _index: PROPERTY_INDEX, _id: item.id },
+        index: { _index: ELASTIC_INDEX.LEGAL_DOCS, _id: item.id },
       });
       operations.push(item);
     }

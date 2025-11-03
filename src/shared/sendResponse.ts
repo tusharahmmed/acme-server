@@ -5,10 +5,7 @@ type IApiReponse<T> = {
   success: boolean;
   message?: string | null;
   meta?: {
-    page: number;
-    limit: number;
     total: number;
-    totalPage: number;
   };
   data?: T | null;
 };
