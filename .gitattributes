@@ -7,6 +7,7 @@
 *.json text eol=lf
 *.md text eol=lf
 *.yml text eol=lf
+yarn.lock text eol=lf
 
 # Force CRLF for Windows files
 *.bat text eol=crlf
