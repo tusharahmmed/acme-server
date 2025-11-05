@@ -9,7 +9,11 @@ const app: Application = express();
 
 app.use(
   cors({
-    origin: true,
+    origin: [
+      'http://localhost:4173',
+      'http://localhost:5173',
+      'https://legal-document.netlify.app',
+    ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }),

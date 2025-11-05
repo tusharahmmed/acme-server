@@ -10,7 +10,11 @@ const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalEr
 const routes_1 = require("./app/routes");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: true,
+    origin: [
+        'http://localhost:4173',
+        'http://localhost:5173',
+        'https://legal-document.netlify.app',
+    ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
